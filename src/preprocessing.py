@@ -49,6 +49,16 @@ plt.title("Distribution of Age")
 plt.show()
 print("Grafico età mostrato")
 
+# Plotting the distribution of listening category
+print("Mostrando grafico categoria ascolto...")
+plt.figure(figsize=(10, 6))
+sns.histplot(mxmh["Listening Category"], kde=False, bins=30)
+plt.title("Distribution of Listening Category")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+print("Grafico categoria ascolto mostrato")
+
 # Plotting the distribution of primary streaming service
 print("Mostrando grafico servizi streaming...")
 plt.figure(figsize=(12, 6))
