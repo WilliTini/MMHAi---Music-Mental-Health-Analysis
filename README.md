@@ -114,7 +114,6 @@ It integrates exploratory data analysis, supervised learning, and symbolic reaso
 ## 🧰 Technologies & Tools
 
 - Python (pandas, seaborn, scikit-learn, Owlready2)
-- Jupyter Notebooks
 - Knowledge representation via OWL and rule-based reasoning
 - MXMH Survey Dataset from Kaggle
 
