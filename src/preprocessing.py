@@ -21,8 +21,8 @@ import numpy as np
 
 # Load the cleaned dataset
 mxmh = pd.read_csv("data/mxmh_clean.csv")
-print(f"Dataset caricato: {mxmh.shape}")
-print(f"Colonne: {list(mxmh.columns)}")
+print(f"Dataset caricato: {mxmh.shape}", flush=True)
+print(f"Colonne: {list(mxmh.columns)}", flush=True)
 
 
 def listener_categories(h):
@@ -38,11 +38,11 @@ def listener_categories(h):
         return "Very High"
     
 mxmh["Listening Category"] = mxmh["Hours per day"].apply(listener_categories)
-print("Categoria di ascolto creata")
+print("Categoria di ascolto creata", flush=True)
 
     
 # Plotting the distribution of age
-print("Mostrando grafico età...")
+print("Mostrando grafico età...", flush=True)
 plt.figure(figsize=(10, 6))
 sns.histplot(mxmh["Age"], kde=True, bins=40)
 plt.title("Distribution of Age")
@@ -76,15 +76,5 @@ sns.histplot(mxmh["Hours per day"], kde=False, bins=30)
 plt.title("Distribution of Hours per Day")
 plt.show()
 print("Grafico ore per giorno mostrato")
-
-# Plotting the distribution of Listening Category
-print("Mostrando grafico categoria ascolto...")
-plt.figure(figsize=(10, 6))
-sns.histplot(mxmh["Listening Category"], kde=False, bins=30)
-plt.title("Distribution of Listening Category")
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
-print("Grafico categoria ascolto mostrato")
 
 print("Analisi completata! I grafici sono stati mostrati in finestre separate.")
