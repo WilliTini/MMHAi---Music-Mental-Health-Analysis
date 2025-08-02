@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "python": "${workspaceFolder}/new_venv/Scripts/python.exe"
+        },
+        {
+            "name": "Python: Run preprocessing.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/preprocessing.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "python": "${workspaceFolder}/new_venv/Scripts/python.exe"
+        }
+    ]
+}
