@@ -38,15 +38,31 @@ python -u src\preprocessing.py
 ## 📁 Struttura del Progetto
 
 ```
-MMHAi/
-├── data/
-│   └── mxmh_clean.csv          # Dataset pulito
-├── src/
-│   └── preprocessing.py        # Script principale di analisi
-├── requirements.txt            # Dipendenze Python
-├── setup.ps1                  # Script setup automatico
-├── run.ps1                     # Script esecuzione rapida
-└── README.md                   # Questa documentazione
+MMHAi---Music-Mental-Health-Analysis/
+├── 📂 data/
+│   ├── mxmh_survey_results.csv          # Dataset originale
+│   ├── mxmh_clean.csv                   # Dataset pulito iniziale
+│   ├── mxmh_cleaned.csv                 # Dataset processato
+│   ├── mxmh_final.csv                   # Dataset con clustering mentale ✅
+│   ├── mxmh_music_clusters.csv          # Clustering musicale (fallito)
+│   ├── mxmh_lifestyle_clusters.csv      # Clustering lifestyle alternativo
+│   └── statistical_analysis_summary.json # Risultati Fase 4A ✅
+│
+├── 📂 src/
+│   ├── preprocessing.py                 # Preprocessing base
+│   ├── preprocessing_with_bpm.py        # Preprocessing con BPM
+│   ├── main_preprocessing.py            # Clustering mentale principale ✅
+│   ├── music_preferences_clustering.py  # Clustering musicale (fallito)
+│   ├── lifestyle_clustering.py          # Clustering lifestyle alternativo
+│   ├── statistical_analysis.py          # Analisi statistica Fase 4A ✅
+│   └── 📂 backup/                       # File di backup
+│
+├── 📂 images/
+│   ├── *_tutti_i_vari_grafici               # Tutti i grafici generati 
+│
+├── 📂 new_venv/                         # Ambiente virtuale Python
+├── requirements.txt                     # Dipendenze
+└── README.md                           # Documentazione
 ```
 
 ## 📊 Grafici Generati
