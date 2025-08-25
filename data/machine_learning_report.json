@@ -1,0 +1,68 @@
+{
+  "dataset_info": {
+    "samples": 727,
+    "features": 6,
+    "clusters": 2
+  },
+  "classification_results": {
+    "Random Forest": {
+      "cv_accuracy": 0.4630268199233717,
+      "test_accuracy": 0.5273972602739726,
+      "test_f1": 0.5259446108162626
+    },
+    "Gradient Boosting": {
+      "cv_accuracy": 0.5474358974358974,
+      "test_accuracy": 0.5753424657534246,
+      "test_f1": 0.5717011568660207
+    },
+    "SVM": {
+      "cv_accuracy": 0.4974506336575302,
+      "test_accuracy": 0.541095890410959,
+      "test_f1": 0.5350944139119022
+    },
+    "Logistic Regression": {
+      "cv_accuracy": 0.538815207780725,
+      "test_accuracy": 0.6027397260273972,
+      "test_f1": 0.5877044465866837
+    }
+  },
+  "regression_results": {
+    "Random Forest": {
+      "cv_r2": -0.29133417527673744,
+      "test_r2": -0.035077067283917795,
+      "test_rmse": 1.9178666221101732
+    },
+    "Gradient Boosting": {
+      "cv_r2": -0.10822043538051015,
+      "test_r2": 0.025078721524324443,
+      "test_rmse": 1.861301949626264
+    },
+    "SVR": {
+      "cv_r2": -0.07464273436073424,
+      "test_r2": -0.02377881941695592,
+      "test_rmse": 1.9073707913666942
+    },
+    "Ridge Regression": {
+      "cv_r2": -0.004071837181766402,
+      "test_r2": 0.010779720323180864,
+      "test_rmse": 1.874901960237338
+    },
+    "Linear Regression": {
+      "cv_r2": -0.004153583642453484,
+      "test_r2": 0.010745613384402941,
+      "test_rmse": 1.8749342819641028
+    }
+  },
+  "best_models": {
+    "classification": {
+      "name": "Logistic Regression",
+      "accuracy": 0.6027397260273972,
+      "f1_score": 0.5877044465866837
+    },
+    "regression": {
+      "name": "Gradient Boosting",
+      "r2_score": 0.025078721524324443,
+      "rmse": 1.861301949626264
+    }
+  }
+}
