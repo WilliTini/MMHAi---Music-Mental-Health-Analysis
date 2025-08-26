@@ -45,7 +45,7 @@ kmeans = KMeans(n_clusters=2, random_state=42)
 clusters = kmeans.fit_predict(mental_health_data)
 ```
 
-#### 📚 **Teoria profonda:**
+#### 📚 **Teoria :**
 
 **🧠 Perché K-means?**
 - **Algoritmo centroide-based**: Minimizza la varianza intra-cluster
@@ -59,19 +59,6 @@ clusters = kmeans.fit_predict(mental_health_data)
   - b(i) = distanza media al cluster più vicino
 - **Range [-1, 1]**: 1 = perfetto, 0 = sovrapposizione, -1 = mal clusterizzato
 
-**🔍 Validazione:**
-```python
-silhouette_score = 0.306  # Il nostro risultato
-```
-- **0.306 è buono** per dati psicologici (tipicamente 0.2-0.5)
-- In psicologia, i confini tra gruppi sono spesso sfumati
-
-**⚠️ Perché non clustering sui generi musicali?**
-- **Silhouette score = 0.130** (molto basso)
-- **Problema**: I gusti musicali sono troppo eterogenei per formare cluster netti
-- **Lezione**: Non tutti i dati sono "clusterabili"
-
----
 
 ### **FASE 4A: ANALISI STATISTICA**
 
@@ -190,20 +177,6 @@ from sklearn.metrics import classification_report, confusion_matrix
 
 ---
 
-### **2. FUNZIONE LOAD_DATA()**
-
-```python
-def load_data():
-    df = pd.read_csv('data/mxmh_final.csv')
-    
-    # Variabili musicali definite manualmente
-    music_genres = ['Classical', 'Country', 'EDM', 'Folk', 'Gospel', 'Hip hop', 
-                   'Jazz', 'K pop', 'Latin', 'Lofi', 'Metal', 'Pop', 'R&B', 
-                   'Rap', 'Rock', 'Video game music']
-    
-    music_behaviors = ['Hours per day', 'While working', 'Instrumentalist', 
-                      'Composer', 'Foreign languages', 'Exploratory']
-```
 
 **🔍 Teoria:**
 - **Feature Engineering**: Abbiamo separato generi musicali da comportamenti
@@ -434,37 +407,6 @@ def feature_importance(class_results, reg_results, feature_names):
 
 ---
 
-### **7. VISUALIZZAZIONI**
-
-```python
-def create_plots(class_results, reg_results, class_best, reg_best):
-    fig, axes = plt.subplots(2, 3, figsize=(15, 10))
-```
-
-**🔍 Struttura plot:**
-
-**Confusion Matrix:**
-```python
-cm = confusion_matrix(y_true, y_pred)
-# Matrice 2x2:
-# [[TN, FP],
-#  [FN, TP]]
-```
-- **Diagonale**: Predizioni corrette
-- **Off-diagonal**: Errori
-- **Ideale**: Tutti i valori sulla diagonale
-
-**Predicted vs Actual (Regressione):**
-```python
-plt.scatter(y_true, y_pred, alpha=0.6)
-plt.plot([y_true.min(), y_true.max()], [y_true.min(), y_true.max()], 'r--')
-```
-- **Linea rossa**: Predizione perfetta (y_pred = y_true)
-- **Punti vicini alla linea**: Buone predizioni
-- **Scatter ampio**: Predizioni imprecise
-
----
-
 ### **8. INTERPRETAZIONE RISULTATI**
 
 ```python
@@ -493,27 +435,7 @@ else:
 
 ---
 
-## 🎯 **RISULTATI E INTERPRETAZIONE**
 
-### **Classificazione: Accuracy = 60.3%**
-**🤔 È buono?**
-- **Baseline casuale**: 50% (2 cluster bilanciati)
-- **Miglioramento**: +10.3% sul caso
-- **Interpretazione**: Segnale debole ma rilevabile
-
-### **Regressione: R² = 0.011**
-**🤔 È terribile?**
-- **NO!** In psicologia, R² = 0.02 è già "piccolo effetto"
-- **Variabili confondenti**: Genetica, ambiente, eventi di vita...
-- **Lezione**: La musica è UN fattore tra molti
-
-### **Feature Importance: "Hours per day" = 63.8%**
-**🎯 Significato:**
-- **Quantità > Qualità**: Quanto ascolti conta più di cosa ascolti
-- **Teoria del coping**: Musica come strategia di regolazione emotiva
-- **Dose-response**: Più problemi → più musica per gestirli
-
----
 
 ## 🔬 **VALIDITÀ SCIENTIFICA**
 
@@ -547,22 +469,6 @@ else:
 
 ---
 
-## 🎯 **PERCHÉ QUESTI RISULTATI?**
-
-**Accuracy 60.3% è ragionevole perché:**
-1. **Baseline = 50%** (classi bilanciate)
-2. **Problema complesso**: Salute mentale ha molti fattori
-3. **Features limitate**: Solo comportamenti musicali
-4. **Rumore nei dati**: Self-report, bias soggettivi
-
-**R² = 0.011 è normale perché:**
-1. **Variabili confondenti**: Genetica, ambiente, eventi vita
-2. **Non-linearità**: Relazioni complesse non catturate
-3. **Eterogeneità individuale**: Persone reagiscono diversamente
-4. **Measurement error**: Imprecisioni nelle misure
-
----
-
 ## 🎯 **CONCLUSIONI METODOLOGICHE**
 
 1. **Pattern esistono** ma sono **deboli**
@@ -576,4 +482,3 @@ La musica E la salute mentale sono collegate, ma la relazione è complessa e mul
 
 **🏆 Il successo è aver trovato UN segnale in mezzo al rumore!**
 
-Il codice è progettato per essere **robusto, interpretabile e scientificamente valido** - obiettivi raggiunti! 🎵🧠
