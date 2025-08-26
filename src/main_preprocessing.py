@@ -1,4 +1,4 @@
-# PREPROCESSING SEMPLICE CON ANALISI BPM
+# Preprocessing con analisi BPM
 
 import pandas as pd
 import numpy as np
@@ -8,7 +8,7 @@ from sklearn.metrics import silhouette_score
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-print("PREPROCESSING MUSICA E SALUTE MENTALE")
+print("Preprocessing musica e salute mentale")
 
 # Carica dataset
 mxmh = pd.read_csv("data/mxmh_survey_results.csv")
@@ -453,5 +453,5 @@ if len(bpm_by_cluster) > 1:
 
 # Salva risultati
 mxmh_clustered.to_csv("data/mxmh_final.csv", index=False)
-print(f"\nSalvato in data/mxmh_final.csv")
-print("ANALISI COMPLETATA!")
+print("\nSalvato in data/mxmh_final.csv")
+print("Analisi completata.")

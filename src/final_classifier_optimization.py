@@ -17,7 +17,7 @@ warnings.filterwarnings('ignore')
 try:
     import xgboost as xgb
     XGBOOST_AVAILABLE = True
-    print("XGBoost disponibile!")
+    print("XGBoost disponibile.")
 except ImportError:
     XGBOOST_AVAILABLE = False
     print("XGBoost non disponibile.")
@@ -25,7 +25,7 @@ except ImportError:
 try:
     import lightgbm as lgb
     LGBM_AVAILABLE = True
-    print("LightGBM disponibile!")
+    print("LightGBM disponibile.")
 except ImportError:
     LGBM_AVAILABLE = False
     print("LightGBM non disponibile.")
@@ -100,7 +100,7 @@ def advanced_feature_selection(X, y):
 
 def final_classifier_optimization():
     """Esegue l'ottimizzazione finale del classificatore."""
-    print("🚀 OTTIMIZZAZIONE FINALE CLASSIFICATORE")
+    print("Ottimizzazione finale classificatore")
     print("="*80)
     
     X, y = load_and_prepare_data()
@@ -177,23 +177,23 @@ def final_classifier_optimization():
 
     # Ensemble
     if len(best_estimators) >= 2:
-        print("\nCreando ENSEMBLE...")
+        print("\nCreando ensemble...")
         ensemble = VotingClassifier(estimators=list(best_estimators.items()), voting='soft')
         ensemble.fit(X_train, y_train)
         y_pred_ensemble = ensemble.predict(X_test)
         accuracy_ensemble = accuracy_score(y_test, y_pred_ensemble)
         results['ENSEMBLE'] = {'accuracy': accuracy_ensemble, 'model': ensemble}
-        print(f"ENSEMBLE Test Accuracy: {accuracy_ensemble:.4f}")
+        print(f"Ensemble Test Accuracy: {accuracy_ensemble:.4f}")
 
     # Report finale
     best_model_name = max(results.keys(), key=lambda x: results[x]['accuracy'])
     best_accuracy = results[best_model_name]['accuracy']
     
     print("\n" + "="*80)
-    print("RISULTATI FINALI OTTIMIZZAZIONE")
+    print("Risultati finali ottimizzazione")
     print("="*80)
     print(f"Miglior modello: {best_model_name}")
-    print(f"Miglior Accuracy: {best_accuracy:.4f}")
+    print(f"Miglior accuracy: {best_accuracy:.4f}")
     print(f"Features usate: {len(selected_features)}")
 
 if __name__ == "__main__":

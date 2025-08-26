@@ -40,7 +40,7 @@ def load_and_prepare_data():
 
 def simple_classification_pipeline():
     """Esegue una pipeline di classificazione semplice senza feature engineering."""
-    print("🚀 ESECUZIONE CLASSIFICATORE SEMPLICE (SENZA FEATURE ENGINEERING)")
+    print("Esecuzione classificatore semplice (senza feature engineering)")
     print("="*80)
     
     # 1. Carica i dati

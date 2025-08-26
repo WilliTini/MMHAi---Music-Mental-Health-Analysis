@@ -175,4 +175,4 @@ def simple_prediction_analysis():
 
 if __name__ == "__main__":
     results = simple_prediction_analysis()
-    print("\nANALISI COMPLETATA!")
+    print("\nAnalisi completata.")

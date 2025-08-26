@@ -1,4 +1,4 @@
-#Analisi Dati
+# Analisi dati e visualizzazioni del dataset MMH
 # This script performs data analysis on the MMH survey results dataset.
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -30,7 +30,6 @@ mxmh = pd.read_csv("data/mxmh_final.csv")
 if 'BPM' in mxmh.columns:
     mxmh['BPM'] = mxmh['BPM'].fillna(mxmh['BPM'].mean())
     print("Valori mancanti in 'BPM' riempiti con la media.")
-
 print(f"Dataset caricato: {mxmh.shape}", flush=True)
 print(f"Colonne: {list(mxmh.columns)}", flush=True)
 
@@ -118,7 +117,7 @@ def listener_categories(h):
         return "Very High"
     
 mxmh["Listening Category"] = mxmh["Hours per day"].apply(listener_categories)
-print("Categoria di ascolto RIVISTA creata", flush=True)
+print("Categoria di ascolto rivista creata", flush=True)
 
 # Verifica la distribuzione
 new_distribution = mxmh["Listening Category"].value_counts()
@@ -143,16 +142,14 @@ for i, (cat, count) in enumerate(new_distribution.items()):
 plt.tight_layout()
 plt.show()
 
-print("\n=== NUOVA CATEGORIZZAZIONE ===")
-print("RIVISTA (basata sui dati):")
+print("\n=== Nuova categorizzazione ===")
+print("Rivista (basata sui dati):")
 print("- Very Low: < 2 ore (sotto 25° percentile)")
 print("- Low: 2-3 ore (25°-50° percentile)")
 print("- Mean: 3-5 ore (50°-75° percentile)")
 print("- High: 5-7 ore (75°-90° percentile)")
 print("- Very High: >= 7 ore (sopra 90° percentile)")
-
-print(f"\nLa nuova categorizzazione è più bilanciata e riflette meglio")
-print(f"la distribuzione effettiva del dataset (mediana: 3 ore, media: {mxmh['Hours per day'].mean():.1f} ore)")
+print(f"\nLa nuova categorizzazione è bilanciata e riflette la distribuzione del dataset (mediana: 3 ore, media: {mxmh['Hours per day'].mean():.1f} ore)")
 
 
 # %%
@@ -216,7 +213,7 @@ scaler = StandardScaler()
 X = scaler.fit_transform(features_clean)
 
 # Test per trovare il numero ottimale di cluster
-print("=== CLUSTERING CON NUOVA CATEGORIZZAZIONE ===")
+print("=== Clustering con nuova categorizzazione ===")
 silhouette_scores = []
 for k in range(2, 8):
     km = KMeans(n_clusters=k, random_state=42, n_init=10)
@@ -250,7 +247,7 @@ mxmh_with_clusters['Cluster'] = final_labels
 print(f"\nDimensioni cluster:")
 print(mxmh_with_clusters['Cluster'].value_counts().sort_index())
 
-print("\n=== ANALISI CLUSTER CON NUOVA CATEGORIZZAZIONE ===")
+print("\n=== Analisi cluster con nuova categorizzazione ===")
 for cluster_id in sorted(mxmh_with_clusters['Cluster'].unique()):
     cluster_data = mxmh_with_clusters[mxmh_with_clusters['Cluster'] == cluster_id]
     print(f"\nCLUSTER {cluster_id} (n={len(cluster_data)} persone)")
@@ -259,7 +256,7 @@ for cluster_id in sorted(mxmh_with_clusters['Cluster'].unique()):
     listener_counts = cluster_data['Listening Category'].value_counts()
     listener_percentages = (listener_counts / len(cluster_data) * 100).round(1)
     
-    print("Distribuzione categorie ascolto:")
+    print("\nDistribuzione categorie ascolto:")
     for category, percentage in listener_percentages.items():
         print(f"   {category}: {listener_counts[category]} persone ({percentage}%)")
     
@@ -420,7 +417,7 @@ for cluster_id, profile in cluster_profiles.items():
 
 # %%
 # IPOTESI INTERPRETATIVE
-print(f"\nIPOTESI INTERPRETATIVE:")
+print("\nIpotesi interpretative:")
 
 # Identifichiamo il cluster con problemi maggiori e minori
 high_distress_cluster = max(cluster_profiles.keys(), key=lambda x: cluster_profiles[x]['mental_health_avg'])
@@ -448,21 +445,21 @@ for condition in mental_cols:
         direction = "Maggiore" if corr_val > 0 else "Minore"
         print(f"     - {direction} ascolto → {direction.lower()} {condition} (r={corr_val:+.3f})")
 
-print(f"\nCONCLUSIONI CHIAVE:")
-print(f"   ✓ Emergono profili distinti di relazione musica-benessere psicologico")
-print(f"   ✓ La categorizzazione rivista permette di identificare pattern più chiari")
-print(f"   ✓ Necessario approfondire i meccanismi causali (musica come causa/effetto/mediatore)")
+print(f"\nConclusioni chiave:")
+print(f"   - Emergono profili distinti di relazione musica-benessere psicologico")
+print(f"   - La categorizzazione rivista permette di identificare pattern più chiari")
+print(f"   - Necessario approfondire i meccanismi causali (musica come causa/effetto/mediatore)")
 
-print("\nAnalisi interpretativa completata!")
+print("\nAnalisi interpretativa completata.")
 
 # %%
-# CLUSTERING COMPLESSIVO SUI PROFILI D'ASCOLTO
+# Clustering complessivo sui profili d'ascolto
 print("\n" + "="*80)
-print("CLUSTERING COMPLESSIVO SUI PROFILI D'ASCOLTO")
+print("Clustering complessivo sui profili d'ascolto")
 print("="*80)
 
-# 1. PREPARAZIONE DATI
-print("\n1. PREPARAZIONE DATI PER CLUSTERING COMPLESSIVO...")
+# 1. Preparazione dati
+print("\n1. Preparazione dati per clustering complessivo...")
 
 # Mapping delle frequenze in valori numerici (se non già fatto)
 frequency_mapping = {
@@ -514,7 +511,7 @@ print(profile_features_cols)
 print(f"\nCampione per il clustering: {len(profile_features)} persone")
 
 # 2. STANDARDIZZAZIONE E CLUSTERING
-print("\n2. STANDARDIZZAZIONE E RICERCA K OTTIMALE...")
+print("\n2. Standardizzazione e ricerca k ottimale...")
 scaler_profile = StandardScaler()
 X_profile = scaler_profile.fit_transform(profile_features)
 
@@ -539,7 +536,7 @@ profile_labels = km_profile.fit_predict(X_profile)
 mxmh['Profile_Cluster'] = profile_labels
 
 # 3. VISUALIZZAZIONE CLUSTER (PCA)
-print("\n3. VISUALIZZAZIONE CLUSTER TRAMITE PCA...")
+print("\n3. Visualizzazione cluster tramite PCA...")
 pca_profile = PCA(n_components=2)
 X_profile_pca = pca_profile.fit_transform(X_profile)
 
@@ -554,7 +551,7 @@ plt.show()
 
 # 4. ANALISI E INTERPRETAZIONE DEI PROFILI CLUSTER
 print("\n" + "="*80)
-print("4. ANALISI E INTERPRETAZIONE DEI PROFILI CLUSTER")
+print("4. Analisi e interpretazione dei profili cluster")
 print("="*80)
 
 # Aggiungiamo anche le colonne sulla salute mentale per l'analisi finale
@@ -592,7 +589,7 @@ for cluster_id in sorted(mxmh_profiles['Profile_Cluster'].unique()):
 
 # 5. CONFRONTO GRAFICO DELLA SALUTE MENTALE TRA CLUSTER
 print("\n" + "="*80)
-print("5. CONFRONTO GRAFICO DELLA SALUTE MENTALE TRA CLUSTER")
+print("5. Confronto grafico della salute mentale tra cluster")
 print("="*80)
 
 cluster_mental_means = mxmh_profiles.groupby('Profile_Cluster')[['Depression', 'Anxiety', 'Insomnia', 'OCD']].mean()
@@ -621,12 +618,12 @@ for i, condition in enumerate(mental_conditions):
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 plt.show()
 
-print("\nAnalisi profili completata!")
+print("\nAnalisi profili completata.")
 
 # %%
 # 6. VISUALIZZAZIONI AVANZATE DEI PROFILI CLUSTER
 print("\n" + "="*80)
-print("6. VISUALIZZAZIONI AVANZATE DEI PROFILI CLUSTER")
+print("6. Visualizzazioni avanzate dei profili cluster")
 print("="*80)
 
 # A. GRAFICO RADAR PER CONFRONTARE I PROFILI
